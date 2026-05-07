@@ -1,0 +1,38 @@
+Mode: one row per Customer_ID (n=12500)
+Class distribution:
+Standard    0.51880
+Poor        0.28816
+Good        0.19304
+Imbalance: max/min class share = 2.69 (SMOTENC + balanced weights mitigate minority loss)
+Optuna trials: XGB=4, RF=4, LGBM=4 | inner CV folds=2
+Skipping XGBoost (package missing).
+Tuning Random Forest...
+Best RandomForest params: {'max_features': 0.7, 'n_estimators': 180, 'max_depth': 11, 'min_samples_split': 5, 'min_samples_leaf': 2}
+
+===== Random Forest + SMOTENC — 3-fold CV (OOF) =====
+              precision    recall  f1-score   support
+
+        Good       0.49      0.62      0.55      1930
+        Poor       0.62      0.65      0.64      2882
+    Standard       0.69      0.60      0.64      5188
+
+    accuracy                           0.62     10000
+   macro avg       0.60      0.62      0.61     10000
+weighted avg       0.63      0.62      0.62     10000
+
+CV Accuracy: 0.6201 | CV Macro-F1: 0.6085
+
+----- Random Forest + SMOTENC — hold-out test -----
+              precision    recall  f1-score   support
+
+        Good       0.49      0.61      0.54       483
+        Poor       0.63      0.68      0.65       720
+    Standard       0.70      0.61      0.65      1297
+
+    accuracy                           0.63      2500
+   macro avg       0.61      0.63      0.62      2500
+weighted avg       0.64      0.63      0.63      2500
+
+Test Accuracy: 0.6280 | Test Macro-F1: 0.6152
+Test Macro ROC-AUC (OVR): 0.7800
+Skipping LightGBM (package missing).
